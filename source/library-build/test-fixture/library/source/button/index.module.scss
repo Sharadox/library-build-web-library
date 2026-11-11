@@ -1,0 +1,6 @@
+@use "style/token" as *;
+
+.button {
+  color: $color;
+  padding: 4px;
+}

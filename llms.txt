@@ -1,0 +1,9 @@
+# @sharadox/library-build-web-library
+
+> One-command build for React component libraries: tsc → distribution/, *.module.scss → *.module.css, assets copied, style imports rewritten.
+
+- Command: `library-build` (package.json "build": "library-build"), uses tsconfig.build.json.
+- Copies: .css .scss .svg .png .jpg .jpeg .webp .avif .gif .ico .woff .woff2 .ttf .otf .json .glb .gltf; skips *unit-test.*, *benchmark-test.*, *end-to-end-test.*, test-fixture/, snapshot/.
+- Sass load path: source/ (so `@use "style/token"` works).
+- API: buildLibrary({ root, source, output, project, print }), buildPlan(files), rewriteStyleImports(code), listFiles(folder).
+- Licence: Sharadox Open Source Licence 0.1.0
