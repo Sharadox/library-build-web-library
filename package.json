@@ -1,6 +1,6 @@
 {
   "name": "@sharadox/library-build-web-library",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Builds Sharadox component libraries: TypeScript to distribution/, Sass modules to CSS, assets copied and style imports rewritten, with one command.",
   "private": false,
   "license": "SEE LICENSE IN LICENCA.md",
@@ -29,7 +29,7 @@
   ],
   "sideEffects": false,
   "engines": {
-    "node": ">=24"
+    "node": ">=26"
   },
   "packageManager": "pnpm@10.34.9",
   "publishConfig": {
