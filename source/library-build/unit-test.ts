@@ -30,6 +30,18 @@ describe("buildLibrary", () => {
     expect(print).toHaveBeenCalledWith("built: 1 styles compiled, 2 files copied, 1 imports rewritten");
   });
 
+  test("builds the current folder by default (the command's case)", () => {
+    const root = copyFixture();
+    const previous = process.cwd();
+    process.chdir(root);
+    try {
+      buildLibrary();
+    } finally {
+      process.chdir(previous);
+    }
+    expect(existsSync(join(root, "distribution/button/index.module.css"))).toBe(true);
+  });
+
   test("clears an earlier build first, and is silent by default", () => {
     const root = copyFixture();
     buildLibrary({ root });
