@@ -1,7 +1,7 @@
 import { execFileSync } from "node:child_process";
 import { copyFileSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
-import { dirname, join } from "node:path";
+import { dirname, join, resolve } from "node:path";
 import { compile } from "sass";
 import { buildPlan } from "@sharadox/library-build-web-library/build-plan";
 import { listFiles } from "@sharadox/library-build-web-library/list-file";
@@ -30,7 +30,7 @@ export function buildLibrary({
   const from = join(root, source);
   const to = join(root, output);
   rmSync(to, { recursive: true, force: true });
-  const typeScript = createRequire(join(root, "package.json")).resolve("typescript/bin/tsc");
+  const typeScript = createRequire(resolve(root, "package.json")).resolve("typescript/bin/tsc");
   execFileSync(process.execPath, [typeScript, "-p", join(root, project)], { stdio: "inherit" });
   const plan = buildPlan(listFiles(from));
   for (const file of plan.copy) {
