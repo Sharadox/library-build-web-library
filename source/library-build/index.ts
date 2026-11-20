@@ -13,9 +13,12 @@ const write = (path: string, contents: string) => {
   writeFileSync(path, contents);
 };
 
+/** Where style-web-library's Sass helpers are, from the package's root. */
+export const STYLE_HELPER_PATH = "node_modules/@sharadox/style-web-library/distribution";
+
 /**
  * Builds a library: clears the output, compiles TypeScript with the build project, compiles Sass modules to CSS
- * (with the source folder on the Sass load path), copies assets and points the JavaScript at the compiled CSS.
+ * (with the source folder and style-web-library's helpers on the Sass load path), copies assets and points the JavaScript at the compiled CSS.
  *
  * @example
  * await buildLibrary({ print: console.log });
@@ -38,7 +41,11 @@ export function buildLibrary({
     copyFileSync(join(from, file), join(to, file));
   }
   for (const file of plan.compile) {
-    const { css } = compile(join(from, file), { loadPaths: [from], style: "compressed" });
+    const { css } = compile(join(from, file), {
+      // The library's own source, then style-web-library's shared helpers (`@use "style-helper"`).
+      loadPaths: [from, join(root, STYLE_HELPER_PATH)],
+      style: "compressed",
+    });
     write(join(to, file.replace(/\.module\.scss$/, ".module.css")), css);
   }
   let rewritten = 0;

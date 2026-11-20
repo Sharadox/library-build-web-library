@@ -6,4 +6,8 @@
 - Copies: .css .scss .svg .png .jpg .jpeg .webp .avif .gif .ico .woff .woff2 .ttf .otf .json .glb .gltf; skips *unit-test.*, *benchmark-test.*, *end-to-end-test.*, test-fixture/, snapshot/.
 - Sass load path: source/ (so `@use "style/token"` works).
 - API: buildLibrary({ root, source, output, project, print }), buildPlan(files), rewriteStyleImports(code), listFiles(folder).
+- /build-plan: buildPlan(files) → { compile, copy }; COPIED_EXTENSIONS: what the build compiles (Sass modules) and copies as is
+- /style-import: rewriteStyleImports(code): points compiled JavaScript at compiled stylesheets (.module.scss → .module.css)
+- /list-file: listFiles(folder): every file under a folder, relative, sorted
 - License: Sharadox Open Source License 0.1.0
+- Sass load path also includes node_modules/@sharadox/style-web-library/distribution (`@use "style-helper"`)
