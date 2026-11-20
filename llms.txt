@@ -10,3 +10,4 @@
 - /style-import: rewriteStyleImports(code): points compiled JavaScript at compiled stylesheets (.module.scss → .module.css)
 - /list-file: listFiles(folder): every file under a folder, relative, sorted
 - License: Sharadox Open Source License 0.1.0
+- Sass load path also includes node_modules/@sharadox/style-web-library/distribution (`@use "style-helper"`)
